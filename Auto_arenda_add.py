@@ -10,6 +10,7 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 TOKEN = "8151509290:AAHSTotV96q22XF9RuRL_zSWvNMJlkTbBHA"  # <-- Вставьте ваш токен
 OWNER_ID = 3437915
 DATA_FILE = "data.json"
+ADMINS = [3437915, 123456789]  # сюда добавь ID второго пользователя
 
 # ================== ХРАНЕНИЕ ДАННЫХ ==================
 def load_data():
@@ -71,7 +72,7 @@ def get_main_button(user_id: int):
         kb.row(types.InlineKeyboardButton(text="🚛 Сдать прицеп", callback_data="return_trailer"))
     else:
         kb.row(types.InlineKeyboardButton(text="📝 Оформить аренду", callback_data="start_rent"))
-    if user_id == OWNER_ID:
+    if user_id in ADMINS:
         kb.row(types.InlineKeyboardButton(text="⚙ Настройки", callback_data="owner_settings"))
     return kb.as_markup()
 
